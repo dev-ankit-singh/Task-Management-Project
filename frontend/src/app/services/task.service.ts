@@ -11,7 +11,7 @@ providedIn: 'root'
 })
 export class TaskService {
 
-apiUrl = environment.apiUrl + '/tasks';
+apiUrl = 'https://task-management-system-oh5e.onrender.com/api/tasks';
 
 constructor(private http: HttpClient) { }
 
