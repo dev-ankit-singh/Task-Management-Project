@@ -72,13 +72,22 @@ Angular Reactive Forms are used to validate user input before submitting the for
 Spring Boot validation annotations are used to validate incoming requests and return proper error messages if required fields are missing.
 
 # REST API Endpoints
+I have created the following API endpoints in the backend:
 
-| Method | Endpoint               | Description        |
-| ------ | ---------------------- | ------------------ |
-| GET    | /api/tasks             | Get all tasks      |
-| POST   | /api/tasks             | Create a task      |
-| PATCH  | /api/tasks/{id}/status | Update task status |
-| DELETE | /api/tasks/{id}        | Delete a task      |
+GET /api/tasks
+This endpoint returns the list of all tasks stored in memory.
+
+POST /api/tasks
+This endpoint is used to create a new task. 
+The task name is required.
+
+PATCH /api/tasks/{id}/status
+This endpoint is used to mark a task as completed 
+by passing the task id.
+
+DELETE /api/tasks/{id}
+This endpoint is used to delete a task permanently 
+by passing the task id.
 
 # Conclusion
 
