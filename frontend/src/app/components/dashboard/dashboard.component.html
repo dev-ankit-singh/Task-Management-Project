@@ -1,0 +1,106 @@
+<div class="dashboard-page">
+
+    <div class="greeting">
+
+      
+
+        <h2>Manage your daily tasks</h2>
+
+        <p>
+            Track your progress and stay organized every day.
+        </p>
+
+    </div>
+
+    <div *ngIf="loading" class="loading-text">
+        Loading...
+    </div>
+
+    <div *ngIf="error" class="error-text">
+        {{ error }}
+    </div>
+
+    <div class="stats-row" *ngIf="!loading">
+
+        <div class="stat-card blue">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+
+            <div class="stat-label">
+                TOTAL TASKS
+            </div>
+
+            <div class="stat-number">
+                {{ totalTasks }}
+            </div>
+
+            <span class="stat-badge">
+                <i class="fa-solid fa-chart-line"></i>
+                All Tasks
+            </span>
+
+        </div>
+
+        <div class="stat-card amber">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-hourglass-half"></i>
+            </div>
+
+            <div class="stat-label">PENDING TASKS</div>
+
+            <div class="stat-number">
+                {{ pendingTasks }}
+            </div>
+
+            <span class="stat-badge">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                In Progress
+            </span>
+
+        </div>
+
+        <div class="stat-card green">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="stat-label">
+                COMPLETED
+            </div>
+
+            <div class="stat-number">
+                {{ completedTasks }}
+            </div>
+
+            <span class="stat-badge">
+                <i class="fa-solid fa-check-double"></i>
+                Done
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="actions-row">
+
+        <button class="btn btn-primary" routerLink="/addtask">
+
+            <i class="fa-solid fa-plus"></i>
+            Add New Task
+
+        </button>
+
+        <button class="btn btn-outline" routerLink="/tasks">
+
+            <i class="fa-solid fa-table-list"></i>
+            View All Tasks
+
+        </button>
+
+    </div>
+
+</div>

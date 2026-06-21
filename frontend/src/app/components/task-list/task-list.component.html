@@ -1,0 +1,89 @@
+<div class="task-list-container">
+
+  <div class="page-header">
+    <h2>All Tasks</h2>
+    <p>Manage and track your tasks here</p>
+  </div>
+
+  <!-- Add Task Form -->
+  <!-- <app-task-form (taskCreated)="onTaskCreated()"></app-task-form> -->
+
+  <!-- Search and Filter Bar -->
+  <div class="filter-bar">
+    <input type="text" placeholder="Search tasks..." [(ngModel)]="searchText" (ngModelChange)="onSearchChange()" class="search-input" />
+    <select [(ngModel)]="selectedStatus" (ngModelChange)="onStatusFilterChange()" class="status-select">
+      <option value="All">All Status</option>
+      <option value="Pending">Pending</option>
+      <option value="Completed">Completed</option>
+    </select>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-text">Loading tasks...</div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="error-box">{{ errorMessage }}</div>
+
+  <!-- Task Table -->
+  <div *ngIf="!isLoading && !errorMessage">
+
+    <div *ngIf="filteredTasks.length === 0" class="no-tasks">
+      No tasks found.
+    </div>
+
+    <div *ngIf="filteredTasks.length > 0" class="table-wrapper">
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Created Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of filteredTasks; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td class="task-name">{{ task.name }}</td>
+            <td class="task-desc">{{ task.description || '—' }}</td>
+            <td>
+              <span class="status-badge" [class.badge-pending]="task.status === 'Pending'" [class.badge-completed]="task.status === 'Completed'">
+                {{ task.status }}
+              </span>
+            </td>
+            <td class="date-cell">{{ task.createdDate }}</td>
+            <td class="actions-cell">
+
+              <!-- Mark complete button -->
+              <button
+                *ngIf="task.status === 'Pending'"
+                class="btn btn-complete"
+                (click)="markCompleted(task.id)"
+                title="Mark as Completed"
+              >
+                <i class="fa-solid fa-check"></i> Complete
+              </button>
+
+              <!-- Delete with confirm -->
+              <ng-container *ngIf="deleteConfirmId === task.id; else showDeleteBtn">
+                <span class="confirm-text">Sure?</span>
+                <button class="btn btn-confirm-yes" (click)="deleteTask(task.id)">Yes</button>
+                <button class="btn btn-confirm-no" (click)="cancelDelete()">No</button>
+              </ng-container>
+              <ng-template #showDeleteBtn>
+                <button class="btn btn-delete" (click)="confirmDelete(task.id)" title="Delete Task">
+                  <i class="fa-solid fa-trash"></i> Delete
+                </button>
+              </ng-template>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>

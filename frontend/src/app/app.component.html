@@ -1,0 +1,30 @@
+<div class="app-wrapper">
+
+  <nav class="navbar">
+
+    <div class="navbar-brand">
+      
+      <span class="brand-name">Task Manager</span>
+    </div>
+
+    <button class="menu-btn" (click)="isMenuOpen = !isMenuOpen">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="navbar-links" [class.show-menu]="isMenuOpen">
+
+      <a routerLink="/dashboard" routerLinkActive="active-link" (click)="isMenuOpen=false"> Dashboard </a>
+
+      <a routerLink="/addtask"   routerLinkActive="active-link" (click)="isMenuOpen=false"> Add Task </a>
+
+      <a routerLink="/tasks"  routerLinkActive="active-link" (click)="isMenuOpen=false"> All Tasks </a>
+
+    </div>
+
+  </nav>
+
+  <main class="main-content" style="background: #f0f2f8">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>
